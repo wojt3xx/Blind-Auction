@@ -1,35 +1,31 @@
 import art
+import os
 
 print(art.logo)
 print("Welcome to the secret auction program.")
 
-bidders_dictionary = [
-
-]
-
-
-def add_bidders(my_name, my_bid):
-    # bidders_dictionary["name"] = my_name
-    # bidders_dictionary["bid"] = my_bid
-
-    bidders_dictionary.append({"name": str(my_name), "bid": int(my_bid)})
+bids = {}
+bidding_finished = False
 
 
-name = input("What is your name?: ")
-bid = input("What is your bid?: $")
-add_bidders(name, bid)
+def find_highest_bidder(bidding_record):
+    highest_bid = 0
+    winner = ""
+    for bidder in bidding_record:
+        bid_amount = bidding_record[bidder]
+        if bid_amount > highest_bid:
+            highest_bid = bid_amount
+            winner = bidder
+    print(f"The winner is {winner} with a bid of ${highest_bid}")
 
-more_bidders = True
 
-while more_bidders:
-    other_bidders = input("Are there any other bidders? Type 'yes' or 'no'.\n")
-
-    if other_bidders == "yes":
-        another_name = input("What is your name?: ")
-        another_bid = input("What is your bid?: $")
-        add_bidders(another_name, another_bid)
-    else:
-        print(bidders_dictionary.values())
-        find_max = max(bidders_dictionary.values(), key=bidders_dictionary.get)
-        print("Highest bidder {highest_bidder} has won! Congratulations".format(highest_bidder=find_max))
-        exit()
+while not bidding_finished:
+    name = input("What's you name?: ")
+    price = int(input("What's your bid?: $"))
+    bids[name] = price
+    should_continue = input("Are there any other bidders? Type 'yes' or 'no'.\n")
+    if should_continue == 'no':
+        bidding_finished = True
+        find_highest_bidder(bids)
+    elif should_continue == 'yes':
+        os.system('cls')
