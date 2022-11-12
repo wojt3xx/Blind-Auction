@@ -3,16 +3,16 @@ import art
 print(art.logo)
 print("Welcome to the secret auction program.")
 
-bidders_dictionary = {
+bidders_dictionary = [
 
-}
+]
 
 
 def add_bidders(my_name, my_bid):
     # bidders_dictionary["name"] = my_name
     # bidders_dictionary["bid"] = my_bid
 
-    bidders_dictionary.update({"name": str(my_name), "bid": int(my_bid)})
+    bidders_dictionary.append({"name": str(my_name), "bid": int(my_bid)})
 
 
 name = input("What is your name?: ")
